@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -16,18 +19,21 @@ public class Employee_Basic {
     @Column(name = "empId",nullable = false,unique = true)
     private String empId;
     @Column(name = "firstName")
+    @Size(min = 3,max = 30)
     private String firstName;
     @Column(name = "lastName")
+    @Size(min = 3,max = 30)
     private String lastName;
     @Column(name = "dateOfBirth")
     private LocalDate dateOfBirth;
     @Column(name = "email")
+    @Email(message = "Enter valid Email")
     private String email;
     @Column(name = "phoneNumber")
+    @Pattern(regexp = "^[9876][0-9]{9}$", message = "Invalid mobile number")
     private String phoneNumber;
     @Column(name = "address")
     private String address;
-
     @Column(name = "position")
     private String position;
     @Column(name = "Department")

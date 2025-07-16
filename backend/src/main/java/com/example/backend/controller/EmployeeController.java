@@ -3,7 +3,9 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Employee_Basic;
 import com.example.backend.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,12 +29,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public Employee_Basic addEmployee(@RequestBody Employee_Basic employee)
+    public ResponseEntity<Employee_Basic> addEmployee(@Valid @RequestBody Employee_Basic employee)
     {
         return  employeeService.addEmployee(employee);
     }
     @PutMapping("/updateEmployee/{id}")
-    public Employee_Basic updateEmployee(@RequestBody Employee_Basic employee,@PathVariable String id)
+    public Employee_Basic updateEmployee(@Valid @RequestBody Employee_Basic employee,@PathVariable String id)
     {
         return  employeeService.updateEmployee(employee,id);
     }

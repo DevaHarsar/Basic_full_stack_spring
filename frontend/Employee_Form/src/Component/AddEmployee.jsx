@@ -41,7 +41,9 @@ const AddEmployee = () => {
               
             }
         } catch (error) {
-            console.error("Error saving employee:", error);
+            const message= error.response.data.errors.map(err => `${err.field}: ${err.message}`);
+            // console.error("Error saving employee:");
+             alert(message.join("\n"))
         }
 
    } 

@@ -3,6 +3,8 @@ package com.example.backend.service;
 import com.example.backend.model.Employee_Basic;
 import com.example.backend.repositary.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +22,10 @@ public class EmployeeService {
     {
         return employeeRepository.findById(id);
     }
-    public Employee_Basic addEmployee(Employee_Basic employee)
+    public ResponseEntity<Employee_Basic> addEmployee(Employee_Basic employee)
     {
-//        System.out.println("The add employee clicked"+employee);
-        return employeeRepository.save(employee);
+        Employee_Basic saved = employeeRepository.save(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
     public Employee_Basic updateEmployee(Employee_Basic employee,String id)
     {
